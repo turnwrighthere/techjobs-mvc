@@ -38,6 +38,19 @@
 
     <!-- TODO #2 - Loop over jobs map to display all job fields -->
 
+    <h1 th:if="${searchResults}" th:text="${searchResults.size() + ' Result(s)'}">Results</h1>
+
+    <div th:if="${searchResults}">
+        <div th:if="${searchResults.size() == 0}"><h3>Sorry, nothing here.</h3></div>
+
+        <table th:if="${searchResults.size() != 0}" class="job-listing" th:each="job : ${searchResults}">
+        <tr th:each="jobData : ${job.entrySet()}">
+            <th><strong th:text="${jobData.getKey()}">Title</strong></th>
+            <td th:text="${jobData.getValue()}">Value</td>
+        </tr>
+        </table>
+    </div>
+
 </div>
 
 </body>
